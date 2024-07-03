@@ -1,0 +1,31 @@
+import tkinter
+from tkinter import messagebox
+import mysql.connector
+root=tkinter.Tk()
+def verify():
+    username=e1.get()
+    passw=e2.get()
+    try:
+            db=mysql.connector.connect(host="localhost",user="root",password="Vic@23",database="collex")
+            cursor=db.cursor()
+            cursor.execute("SELECT * FROM users WHERE username=%s and password=%s",(username,passw))
+            result=cursor.fetchone()
+            if result:
+                messagebox.showinfo("succes",f"welcome{username}")
+            else:
+                messagebox.showerror("eror","enter valid credentials")
+    except Exception  as e:
+               pass
+x=tkinter.Label(text="login page")
+x.grid(row=0,column=3)
+l=tkinter.Label(text="enter username")
+l.grid(row=1,column=8)
+e1=tkinter.Entry()
+e1.grid(row=2,column=8)
+pw=tkinter.Label(text="enter password")
+pw.grid(row=4,column=8)
+e2=tkinter.Entry()
+e2.grid(row=6,column=8)
+b=tkinter.Button(text="button",command=verify)
+b.grid(row=8,column=8)
+root.mainloop()
