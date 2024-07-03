@@ -1,0 +1,3 @@
+import mysql.connector
+import tkinter
+install vs code and install extensions for debugging purposes
